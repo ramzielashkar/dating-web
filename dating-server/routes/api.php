@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersController;
+
 
 
 
@@ -10,10 +12,10 @@ use App\Http\Controllers\AuthController;
 //     return $request->user();
 // });
 
-
-  Route::group(['middleware'=>'api', 'prefix'=>'auth'], function($router)
-  {
     Route::post("/register", [AuthController::class, "register"])->name("register-user");
     Route::post("/login", [AuthController::class, "login"])->name("login-user");
-    //Route::get("/addinterest/{interest_name?}", [AuthController::class, "addCategory"]);
-  });
+
+    Route::group(["middleware" => "jwt.verify"], function(){
+      Route::get("/getusers/{id?}", [UsersController::class, "getUsers"])->name("get-users");
+
+    });
