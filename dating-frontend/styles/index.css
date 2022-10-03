@@ -56,7 +56,7 @@
 }
 
 /* signup form styling start */
-.signup-form{
+.signup-in-form{
   width: 500px;
   background-color: #F5EDDC;
   padding: 2rem;
@@ -157,7 +157,7 @@
 /* media queries */
 
 @media only screen and (max-width:1000px){
-  .signup-form{
+  .signup-in-form{
     align-self: center;
   }
   .hero{
@@ -167,7 +167,7 @@
 }
 
 @media only screen and (max-width:1000px){
-.signup-form{
+.signup-in-form{
   width: 400px;
 }
 .select{
