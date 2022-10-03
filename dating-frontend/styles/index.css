@@ -17,7 +17,7 @@
 
 /* Navbar Styling Start */
 .navbar{
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
   background-color: #F5EDDC;
   width: 100%;
   justify-content: space-between;
@@ -42,3 +42,112 @@
   color:rgb(99, 0, 0, 1)!important;
 }
 /* Navbar Styling End */
+
+/* Hero section Styling Start */
+.hero{
+  background-image:url("../assets/hero.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  background-size: cover;
+  height: 88vh;
+  padding: 3rem 7rem;
+
+}
+
+/* signup form styling start */
+.signup-form{
+  width: 500px;
+  background-color: #F5EDDC;
+  padding: 2rem;
+  border-radius: 10px;
+  align-self: flex-end;
+}
+
+.form-title{
+  align-self: center;
+  font-size: 25px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+  margin-bottom: 1rem;
+}
+
+.line{
+  border-bottom: 1px solid rgb(99, 0, 0, 1);
+  margin-bottom: 1rem;
+}
+.form-gender{
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.select{
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 4px #000000;
+  color: rgb(99, 0, 0, 1);
+  padding: 0.5rem;
+  width: 150px;
+}
+
+.interest{
+  align-self: center;
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+}
+.label{
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+  margin-bottom: 1rem;
+}
+
+.form-input{
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 15px;
+  box-shadow: 0 0 4px #000000;
+  border: none;
+  color:rgb(99, 0, 0, 1);
+  outline: none;
+}
+
+.btn{
+  background-color:#EB1D36;
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color:#CFD2CF;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-signup{
+  padding: 0.5rem 1rem;
+  width:30%;
+  align-self: center;
+  margin-bottom: 0.5rem;
+}
+.already-user{
+  align-self: center;
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color:#FA9494;
+}
+
+.error{
+  margin-top: 0.5rem;
+  align-self: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+}
+/* signup form styling End */
+
+/* Hero section Styling End */
