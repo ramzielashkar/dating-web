@@ -18,13 +18,27 @@ class UsersController extends Controller
     $user_id = $request->user_id;
     $id = $request->id;
     if(!$id){
-          return User::
-          leftJoin('blocks', function ($join) {
-            $join->on('users.id', '=', 'blocks.id')
-                 ->whereNotExists('blocked_id');
-        })
-          ->where('users.id', '!=', $user_id)
-          ->get();
+
+        return User:: leftJoin('profiles', function ($join) {
+                    $join->on('profiles.user_id', '=', 'users.id');
+                  })
+                       ->whereNotExists(function ($query) use($user_id){
+                $query->select()
+                      ->from('blocks')
+                      ->where('blocks.blocked_id', '=', 'users.id')
+                      ->where('blocks.user_id', '=', $user_id);
+                    })
+                    ->where('users.id', '!=', $user_id)
+                    ->orderby('users.id')
+                    ->get();
+
+        //   return User::
+        //   leftJoin('blocks', function ($join) {
+        //     $join->on('users.id', '=', 'blocks.id')
+        //          ->where('blocked_id', '!=', 'users.id');
+        // })
+        //   ->where('users.id', '!=', $user_id)
+        //   ->get();
 
       }
       return User::find($id);
@@ -69,8 +83,7 @@ class UsersController extends Controller
   // function to get favorites
   function getFavorites($id)
   {
-    return $favorite = DB::table('users')
-    ->join('favorites', function ($join) use($id) {
+    return User::join('favorites', function ($join) use($id) {
                 $join->on('users.id', '=', 'favorites.followed_id')
                      ->where('favorites.follower_id', '=', $id)
                      ->where('favorites.active', '=', 0);
@@ -83,10 +96,9 @@ class UsersController extends Controller
     $user_id = $request->user_id;
     $favorite_id = $request->favorite_id;
 
-    DB::table('favorites')
-             ->where('follower_id', $user_id)
-             ->where('followed_id', $favorite_id)
-             ->update(['active' => '1']);
+    Favorite::where('follower_id', $user_id)
+    ->where('followed_id', $favorite_id)
+    ->update(['active' => '1']);
   }
   // function to add Profile
 
@@ -124,9 +136,9 @@ class UsersController extends Controller
       return Profile::all();
     }
     else{
-      return DB::table('profiles')
-                ->where('user_id', $id)
-              ->get();
+      return Profile::where('user_id', $id)
+                    ->get();
+
     }
   }
 
@@ -149,5 +161,33 @@ class UsersController extends Controller
           ]);
       }
 
+  }
+
+  // function to get chats
+  function getChats(Request $request)
+  {
+    $user_id = $request->user_id;
+    $receiver_id = $request->receiver_id;
+    $profile = new Profile;
+    if(!$receiver_id){
+      return Chat:: leftJoin('profiles', function ($join) {
+                  $join->on('profiles.user_id', '=', 'chats.receiver_id');
+                })
+                ->Join('users', function ($join) {
+                            $join->on('users.id', '=', 'chats.receiver_id');
+                          })
+                          ->where('chats.sender_id', '=', $user_id)
+                          ->get();
+    }else{
+      return Chat:: leftJoin('profiles', function ($join) use($receiver_id){
+                  $join->on('profiles.user_id', '=', 'chats.receiver_id');
+                })
+                ->leftJoin('users', function ($join) use($receiver_id) {
+                            $join->on('users.id', '=', 'chats.receiver_id');
+                          })
+                          ->where('chats.sender_id', '=', $user_id)
+                          ->where('chats.receiver_id', '=', $receiver_id)
+                          ->get();
+    }
   }
 }
