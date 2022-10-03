@@ -228,6 +228,7 @@ justify-content: space-evenly;
   bottom: -2rem;
   right: 2rem;
   cursor: pointer;
+  z-index: 100;
 }
 
 .change-img{
@@ -235,6 +236,77 @@ justify-content: space-evenly;
   cursor: pointer;
 }
 /* Profile Section Styling End */
+
+/* Edit Profile Section Styling Start */
+
+.edit-profile-sec{
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+}
+
+.edit-profile-container{
+  background-color: #F5EDDC;
+  width: 500px;
+  padding-bottom: 1rem;
+}
+
+.profile-image{
+  height: 200px;
+  position: relative;
+}
+
+.close-edit{
+  position: absolute;
+  top:1rem;
+  right:1rem;
+  cursor: pointer;
+}
+
+.changed-inputs{
+  padding: 2rem;
+}
+
+.select{
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 4px #000000;
+  color: rgb(99, 0, 0, 1);
+  padding: 0.5rem;
+  width: 150px;
+}
+.label{
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+  margin-bottom: 1rem;
+}
+
+.form-input{
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 15px;
+  box-shadow: 0 0 4px #000000;
+  border: none;
+  color:rgb(99, 0, 0, 1);
+  outline: none;
+}
+
+.button{
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: flex-end;
+}
+.btn-save{
+  padding: 0.5rem 1rem;
+}
+/* Edit Profile Section Styling End */
 
 
 /* media queries */
