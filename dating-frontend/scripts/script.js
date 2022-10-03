@@ -93,15 +93,27 @@ moreInfo.forEach((item, i) => {
 
 favoriteTab.addEventListener("click", () => {
   homeSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
   favoritesSection.classList.remove("hidden");
   favoriteTab.classList.add('active');
   homeTab.classList.remove('active');
+  chatTab.classList.remove('active');
 
 });
 
 homeTab.addEventListener("click", () => {
   favoritesSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
   homeSection.classList.remove("hidden");
   favoriteTab.classList.remove('active');
   homeTab.classList.add('active');
+  chatTab.classList.remove('active');
+
+});
+profileTab.addEventListener("click", () => {
+  favoritesSection.classList.add("hidden");
+  homeSection.classList.add("hidden");
+  profileSection.classList.remove("hidden");
+  favoriteTab.classList.remove('active');
+  homeTab.classList.remove('active');
 });
