@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Block;
 use App\Models\Favorite;
 use App\Models\Profile;
+use App\Models\Chat;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
@@ -131,5 +132,24 @@ class UsersController extends Controller
     }
   }
 
+  // function to add chat
+  function addChat(Request $request)
+  {
+    $sender = $request->sender_id;
+    $receiver = $request->receiver_id;
+    $content = $request->content;
 
+    $chat = new Chat;
+    $chat->sender_id = $sender;
+    $chat->receiver_id = $receiver;
+    $chat->content = $content;
+
+    if($chat->save()){
+          return response()->json([
+              "status" => "Success",
+              "data" => $chat,
+          ]);
+      }
+
+  }
 }
