@@ -114,11 +114,9 @@ class UsersController extends Controller
     $profile_picture = $request->profile_picture;
     $bio = $request->bio;
 
-   DB::table('profiles')
-            ->where('user_id', $user_id)
-            ->update(['profile_picture' => $profile_picture,
-          'bio' => $bio]);
-
+    Profile::where('user_id', $user_id)
+              ->update(['profile_picture' => $profile_picture,
+            'bio' => $bio]);
   }
   // function to get Profile
   function getProfile($id=null){
