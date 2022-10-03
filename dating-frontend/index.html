@@ -22,8 +22,23 @@
 
     <!-- hero section start -->
     <section class = "hero flex column">
+      <!-- login form start -->
+      <form class="signup-in-form flex column hidden" action="">
+          <div class="form-title">Find Your Love !</div>
+          <div class="line"></div>
+          <label class ="label" for="login-email">Email</label>
+          <input type="email" name="login-email" id="email" class="form-input" placeholder="example@gmail.com">
+
+          <label class ="label" for="login-password">Password</label>
+          <input type="password" name="login-password" id="password" class="form-input" placeholder="">
+
+          <button type="button" name="login" id = "login" class="btn btn-signup">Login</button>
+          <p class="error hidden"></p>
+      </form>
+      <!-- login form end -->
+
       <!-- signup form start -->
-      <form class="signup-form flex column" action="">
+      <form class="signup-in-form flex column" action="">
           <div class="form-title">Find Your Love !</div>
           <div class="line"></div>
           <label class ="label" for="">I'm a</label>
@@ -58,6 +73,7 @@
           <p class="error hidden"></p>
       </form>
       <!-- signup form end -->
+
 
     </section>
     <!-- hero section end -->
