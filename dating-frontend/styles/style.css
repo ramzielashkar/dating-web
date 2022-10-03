@@ -21,7 +21,20 @@ body{
 .active{
   border-bottom: 2px solid rgb(99, 0, 0, 1);
 }
+.btn{
+  background-color:#EB1D36;
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color:#CFD2CF;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
+.selected{
+  color: rgb(99, 0, 0, 1);
+}
 
 /* Navbar Styling Start */
 .navbar{
@@ -60,6 +73,7 @@ body{
   width: 70px;
   height: 70px;
   border-radius: 50px;
+  cursor: pointer;
 }
 
 .profile img{
@@ -69,6 +83,9 @@ body{
 
 /* Users Section Start */
 .users{
+  padding: 2rem 5rem;
+}
+.favorites-section{
   padding: 2rem 5rem;
 }
 
@@ -134,3 +151,40 @@ justify-content: space-evenly;
   cursor: pointer;
   }
 /* Users Section End */
+
+/* Users more info Section Styling Start */
+.users-more-info{
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+}
+
+.user-more{
+  background-color: #F5EDDC;
+  width: 500px;
+}
+
+.block-user{
+  padding: 1rem;
+  width:100%;
+  justify-content: flex-end;
+}
+
+.btn-block{
+  padding: 0.5rem 1rem;
+}
+.user-profile{
+  position: relative;
+}
+.close-moreinfo{
+  position: absolute;
+  z-index: 1;
+  right:1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+/* Users more info Section Styling End */
