@@ -25,5 +25,6 @@ use App\Http\Controllers\UsersController;
       Route::get("/getprofile/{id?}", [UsersController::class, "getProfile"])->name("get-profile");
       Route::post("/removefavorite", [UsersController::class, "removeFavorite"])->name("remove-favorites");
       Route::post("/chat", [UsersController::class, "addChat"])->name("chat");
+      Route::post("/getchat", [UsersController::class, "getChats"])->name("get-chat");
 
     });
