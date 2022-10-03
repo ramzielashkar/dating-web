@@ -352,6 +352,7 @@ padding: 2rem;
 .specific-chat{
   background-color: #F5EDDC;
   padding: 1rem 2rem;
+  height: 50%;
 }
 
 .chat-info{
@@ -385,6 +386,7 @@ padding: 2rem;
 }
 
 .send-message{
+  justify-self:flex-end; 
   align-items: center;
   margin-top: 4rem;
   border-radius: 30px;
