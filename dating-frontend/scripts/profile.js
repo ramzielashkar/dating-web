@@ -115,6 +115,7 @@ editProfileBtn.addEventListener('click', () => {
           // Convert to base64 after load
           fileReader.onload = function (fileLoadedEvent) {
               let fileInputBase64 = fileLoadedEvent.target.result;
+              console.log(fileInputBase64);
           }
           fileReader.readAsDataURL(profilePic);
     }
