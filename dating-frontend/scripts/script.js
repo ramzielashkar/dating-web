@@ -95,6 +95,7 @@ favoriteTab.addEventListener("click", () => {
   homeSection.classList.add("hidden");
   profileSection.classList.add("hidden");
   favoritesSection.classList.remove("hidden");
+  chatPage.classList.add('hidden');
   favoriteTab.classList.add('active');
   homeTab.classList.remove('active');
   chatTab.classList.remove('active');
@@ -104,6 +105,7 @@ favoriteTab.addEventListener("click", () => {
 homeTab.addEventListener("click", () => {
   favoritesSection.classList.add("hidden");
   profileSection.classList.add("hidden");
+  chatPage.classList.add('hidden');
   homeSection.classList.remove("hidden");
   favoriteTab.classList.remove('active');
   homeTab.classList.add('active');
@@ -114,6 +116,19 @@ profileTab.addEventListener("click", () => {
   favoritesSection.classList.add("hidden");
   homeSection.classList.add("hidden");
   profileSection.classList.remove("hidden");
+  chatPage.classList.add('hidden');
   favoriteTab.classList.remove('active');
   homeTab.classList.remove('active');
+  chatTab.classList.remove('active');
+
+});
+
+chatTab.addEventListener("click", () => {
+  favoritesSection.classList.add("hidden");
+  homeSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
+  chatPage.classList.remove('hidden');
+  favoriteTab.classList.remove('active');
+  homeTab.classList.remove('active');
+  chatTab.classList.add('active');
 });
