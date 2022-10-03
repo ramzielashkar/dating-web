@@ -308,6 +308,105 @@ justify-content: space-evenly;
 }
 /* Edit Profile Section Styling End */
 
+/* Chat Section Styling Start */
+.chat-section{
+  padding: 2rem 5rem;
+}
+
+.chats-container{
+  width: 70%;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.all-chats{
+background-color: #F5EDDC;
+padding: 2rem;
+}
+
+.one-chat{
+  width: 400px;
+  background-color: white;
+  border-bottom: 2px solid rgb(99, 0, 0, 1);
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.sender-img{
+  width: 80px;
+  height: 80px;
+}
+
+.sender-img img{
+  border-radius: 50px;
+}
+.sender-name{
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+  margin-left: 2rem;
+}
+
+.specific-chat{
+  background-color: #F5EDDC;
+  padding: 1rem 2rem;
+}
+
+.chat-info{
+  border-bottom: 2px solid rgb(99, 0, 0, 1);
+  align-items: center;
+  padding: 1rem;
+  width: 400px;
+}
+
+.sender-msg{
+  align-self: flex-start;
+  margin: 1rem 0;
+  border-radius: 30px;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  min-width: 300px;
+}
+.my-msg{
+  border-radius: 30px;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  min-width: 300px;
+  align-self: flex-end;
+}
+
+.message{
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(99, 0, 0, 1);
+}
+
+.send-message{
+  align-items: center;
+  margin-top: 4rem;
+  border-radius: 30px;
+  background-color: white;
+  color: rgb(99, 0, 0, 1);
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.send-message input{
+  width: 90%;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  color: rgb(99, 0, 0, 1);
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: bold;
+}
+/* Chat Section Styling End */
 
 /* media queries */
 @media only screen and (max-width:700px){
