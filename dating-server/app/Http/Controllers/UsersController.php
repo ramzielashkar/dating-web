@@ -107,17 +107,51 @@ class UsersController extends Controller
     $user_id = $request->user_id;
     $profile_picture = $request->profile_picture;
     $bio = $request->bio;
+     $folderPath = "Controllers";
+    $exists = Profile::where('user_id', $user_id)->count() > 0;
+    if(!$exists){
+      if($profile_picture){
+      $base64Image = explode(";base64,", $profile_picture);
+      $explodeImage = explode("image/", $base64Image[0]);
+      $imageType = $explodeImage[1];
+      $image_base64 = base64_decode($base64Image[1]);
+      $imageName = $user_id.'.'.'png';
+      \File::put(storage_path(). '/' . $imageName, base64_decode($base64Image[1]));
+  $profile->user_id = $user_id;
+  $profile->profile_picture = $imageName;
+  $profile->bio = $bio;
+}else{
+  $profile->user_id = $user_id;
+  $profile->profile_picture = $profile_picture;
+  $profile->bio = $bio;
+}
 
-    $profile->user_id = $user_id;
-    $profile->profile_picture = $profile_picture;
-    $profile->bio = $bio;
+  if($profile->save()){
+        return response()->json([
+            "status" => "Success",
+            "data" => $profile,
+        ]);
+    }
 
-    if($profile->save()){
-          return response()->json([
-              "status" => "Success",
-              "data" => $profile,
-          ]);
-      }
+  }else{
+    if($profile_picture){
+    $base64Image = explode(";base64,", $profile_picture);
+    $explodeImage = explode("image/", $base64Image[0]);
+    $imageType = $explodeImage[1];
+    $image_base64 = base64_decode($base64Image[1]);
+    $imageName = $user_id.'.'.'png';
+    \File::put(storage_path(). '/' . $imageName, base64_decode($base64Image[1]));
+    Profile::where('user_id', $user_id)
+              ->update(['profile_picture' => $imageName,
+            'bio' => $bio]);
+}else{
+  Profile::where('user_id', $user_id)
+            ->update(['profile_picture' => $profile_picture,
+          'bio' => $bio]);
+}
+
+  }
+
   }
 
   // function to Update Profile
