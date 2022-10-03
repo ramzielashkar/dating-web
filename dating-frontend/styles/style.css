@@ -65,3 +65,72 @@ body{
 .profile img{
   border-radius: 50px;
 }
+/* Navbar Styling End */
+
+/* Users Section Start */
+.users{
+  padding: 2rem 5rem;
+}
+
+.home-title{
+  font-weight: bold;
+  font-family: 'Roboto';
+  color:rgb(99, 0, 0, 1);
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
+.users-cards{
+flex-wrap: wrap;
+justify-content: space-evenly;
+}
+
+.user-card{
+  background-color: #F5EDDC;
+  margin-bottom: 2rem;
+}
+
+.user-info{
+  padding:0 1rem;
+}
+
+.info{
+  margin-top: 1rem;
+  font-weight: bold;
+  font-family: 'Roboto';
+  color:rgb(99, 0, 0, 1);
+}
+
+.data{
+  margin-left: 1rem;
+}
+
+.actions{
+  padding:1rem;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.end{
+  flex-basis: 60%;
+  justify-content: flex-end;
+}
+.more-info{
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  font-family: 'Roboto';
+  color:rgb(99, 0, 0, 1);
+}
+
+.chat-icon{
+  color:rgb(99, 0, 0, 1);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.fav-icon{
+  cursor: pointer;
+  }
+/* Users Section End */
