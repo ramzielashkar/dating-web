@@ -189,6 +189,52 @@ justify-content: space-evenly;
 }
 /* Users more info Section Styling End */
 
+/* Profile Section Styling Start */
+.profile-section{
+  padding: 0 20rem;
+}
+
+.profile-pic{
+  height: 400px;
+  position: relative;
+}
+
+.blur{
+  opacity: 70%;
+  max-width: 300px;
+}
+
+.profile-btns{
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0 2rem;
+  justify-content: flex-end;
+}
+
+.btn-profile{
+  padding: 0.5rem 0;
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.edit-pic{
+  width:80px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 1px solid rgb(99, 0, 0, 1);
+  position: absolute;
+  bottom: -2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.change-img{
+  color: rgb(99, 0, 0, 1);
+  cursor: pointer;
+}
+/* Profile Section Styling End */
 
 
 /* media queries */
