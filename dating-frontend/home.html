@@ -12,6 +12,7 @@
     <script type="text/javascript" src="scripts/script.js" defer></script>
     <script type="text/javascript" src="scripts/profile.js" defer></script>
     <script type="text/javascript" src="scripts/getfavorites.js" defer></script>
+    <script type="text/javascript" src="scripts/chats.js" defer></script>
 
   </head>
 
@@ -70,10 +71,17 @@
 <!-- Edit Profile Section End -->
 
 <!-- Chat Section Start -->
-    <section class = "chat-section flex column">
+    <section class = "chat-section flex column hidden">
       <h1 class = "home-title">Chats</h1>
       <div class="chats-container flex">
         <div class="all-chats flex column">
+          <div class="one-chat flex">
+            <input type="hidden" name="" value="12" class="sender-id">
+            <div class="sender-img">
+              <img src="assets/images.jpeg" alt="" width="100%" height="100%">
+            </div>
+            <div class="sender-name">Ramzi El Ashkar</div>
+          </div>
           <div class="one-chat flex">
             <input type="hidden" name="" value="12" class="sender-id">
             <div class="sender-img">
@@ -93,16 +101,16 @@
 
           <div class="messages flex column">
             <div class="sender-msg">
-              <p class = "message">Hello</p>
+              <p class = "message">Hello.</p>
             </div>
             <div class="my-msg">
-              <p class = "message">Hello</p>
+              <p class = "message">Hello.</p>
             </div>
           </div>
 
-          <div class="send message flex">
-            <input type="text" name="messade" id = "message-to-send" value="">
-            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          <div class="send-message flex">
+            <input type="text" name="messade" id = "message-to-send" value="" placeholder="your message...">
+            <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
           </div>
         </div>
       </div>
