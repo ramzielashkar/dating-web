@@ -49,7 +49,7 @@ const editProfilePopup = () => {
       </label>
       <input type="file" name="image" accept="image/*" capture="environment" id="change-pp" multiple hidden>
     </div>
-    <img src="assets/images.jpeg" alt="" width="100%" height="100%">
+    <img src="assets/images.jpeg" id ="changed-profile-picture" alt="" width="100%" height="100%">
   </div>
   <div class="changed-inputs flex column">
   <label class ="label" for="changed-location">Location</label>
@@ -86,8 +86,32 @@ const editProfileBtn = document.getElementById('edit-profile');
 
 editProfileBtn.addEventListener('click', () => {
   editProfilePopup();
+  const changeProfilePic = document.getElementById('change-pp');
+  const changedNameInput = document.getElementById('changed-name');
+  const changedLocationInput = document.getElementById('changed-location');
+  const changedEmailInput = document.getElementById('changed-email');
+  const changedPassInput = document.getElementById('changed-password');
+  const changedInerestInput = document.getElementById('changed-interest');
+  const changedProfilePic = document.getElementById('changed-profile-picture');
+
+  changeProfilePic.addEventListener('change', () => {
+    changedProfilePic.src = URL.createObjectURL(event.target.files[0]);
+  });
   const closeEdit = document.querySelector('.close-edit');
   closeEdit.addEventListener('click', () => {
     editProfileSection.classList.add('hidden');
+  });
+
+  const saveEditedBtn = document.getElementById('save-edit');
+  saveEditedBtn.addEventListener('click', () => {
+    const changedName = changedNameInput.value;
+    const changedEmail = changedEmailInput.value;
+    const changedInerest = changedInerestInput.options[changedInerestInput.selectedIndex].text;
+    const changedPassword = changedPassInput.value;
+    const changedLocation = changedLocationInput.value;
+    const newPic = changeProfilePic.value;
+    console.log(newPic);
+    editProfileSection.classList.add('hidden');
+
   });
 });
