@@ -2,11 +2,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Love Finder</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <!-- Navbar Section Start -->
-    <nav class="navbar">
+    <nav class="navbar flex">
       <div class="title">Love
         <span class="finder">Finder</span>
       </div>
@@ -15,6 +19,44 @@
       </div>
     </nav>
     <!-- Navbar Section End -->
+
+    <!-- hero section start -->
+    <section class = "hero">
+      <!-- signup form start -->
+      <form class="signup-form flex column" action="">
+          <div class="form-title">Find Your Love!</div>
+          <div class="line"></div>
+          <label for="">I'm a</label>
+          <div class="form-gender flex">
+            <select class="" name="">
+
+            </select>
+            <p class="interest">Seeking</p>
+            <select class="" name="">
+
+            </select>
+          </div>
+          <label for="location">Location</label>
+          <input type="text" name="Location" id="location" class="form-input" placeholder="Beirut">
+
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" class="form-input" placeholder="Name...">
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-input" placeholder="example@gmail.com">
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-input" placeholder="">
+
+          <button type="button" name="signup" id = "signup" class="btn">Sign Up</button>
+
+          <a href="">Already have an account?</a>
+          <p class="error hidden"></p>
+      </form>
+      <!-- signup form end -->
+
+    </section>
+    <!-- hero section end -->
 
   </body>
 </html>
