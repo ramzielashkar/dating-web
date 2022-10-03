@@ -188,3 +188,27 @@ justify-content: space-evenly;
   cursor: pointer;
 }
 /* Users more info Section Styling End */
+
+
+
+/* media queries */
+@media only screen and (max-width:700px){
+
+  .user-card{
+    width: 90%;
+  }
+  .nav-items{
+    flex-basis: 60%;
+    justify-content: space-between;
+  }
+
+}
+
+@media only screen and (max-width:1000px){
+
+.nav-items{
+  flex-basis: 50%;
+  justify-content: space-between;
+}
+
+}
