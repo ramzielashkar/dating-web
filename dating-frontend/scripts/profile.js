@@ -109,8 +109,15 @@ editProfileBtn.addEventListener('click', () => {
     const changedInerest = changedInerestInput.options[changedInerestInput.selectedIndex].text;
     const changedPassword = changedPassInput.value;
     const changedLocation = changedLocationInput.value;
-    const newPic = changeProfilePic.value;
-    console.log(newPic);
+    if(changeProfilePic.files.length>0){
+      let profilePic = changeProfilePic.files[0];
+      let fileReader = new FileReader();
+          // Convert to base64 after load
+          fileReader.onload = function (fileLoadedEvent) {
+              let fileInputBase64 = fileLoadedEvent.target.result;
+          }
+          fileReader.readAsDataURL(profilePic);
+    }
     editProfileSection.classList.add('hidden');
 
   });
