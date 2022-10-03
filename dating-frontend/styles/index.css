@@ -151,3 +151,26 @@
 /* signup form styling End */
 
 /* Hero section Styling End */
+
+
+
+/* media queries */
+
+@media only screen and (max-width:1000px){
+  .signup-form{
+    align-self: center;
+  }
+  .hero{
+    justify-content: center;
+  }
+
+}
+
+@media only screen and (max-width:1000px){
+.signup-form{
+  width: 400px;
+}
+.select{
+  width:100px;
+}
+}
