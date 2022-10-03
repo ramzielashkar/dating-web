@@ -21,36 +21,40 @@
     <!-- Navbar Section End -->
 
     <!-- hero section start -->
-    <section class = "hero">
+    <section class = "hero flex column">
       <!-- signup form start -->
       <form class="signup-form flex column" action="">
-          <div class="form-title">Find Your Love!</div>
+          <div class="form-title">Find Your Love !</div>
           <div class="line"></div>
-          <label for="">I'm a</label>
+          <label class ="label" for="">I'm a</label>
           <div class="form-gender flex">
-            <select class="" name="">
-
+            <select class="select" name="">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Both">Both</option>
             </select>
             <p class="interest">Seeking</p>
-            <select class="" name="">
-
+            <select class="select" name="">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Both">Both</option>
             </select>
           </div>
-          <label for="location">Location</label>
+          <label class ="label" for="location">Location</label>
           <input type="text" name="Location" id="location" class="form-input" placeholder="Beirut">
 
-          <label for="name">Name</label>
+          <label class ="label" for="name">Name</label>
           <input type="text" name="name" id="name" class="form-input" placeholder="Name...">
 
-          <label for="email">Email</label>
+          <label class ="label" for="email">Email</label>
           <input type="email" name="email" id="email" class="form-input" placeholder="example@gmail.com">
 
-          <label for="password">Password</label>
+          <label class ="label" for="password">Password</label>
           <input type="password" name="password" id="password" class="form-input" placeholder="">
 
-          <button type="button" name="signup" id = "signup" class="btn">Sign Up</button>
+          <button type="button" name="signup" id = "signup" class="btn btn-signup">Sign Up</button>
 
-          <a href="">Already have an account?</a>
+          <a class="already-user" href="">Already have an account?</a>
           <p class="error hidden"></p>
       </form>
       <!-- signup form end -->
