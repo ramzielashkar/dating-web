@@ -10,6 +10,7 @@
 
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script type="text/javascript" src="scripts/script.js" defer></script>
+    <script type="text/javascript" src="scripts/getfavorites.js" defer></script>
 
   </head>
 
@@ -40,40 +41,17 @@
     <!-- users section end -->
 
 <!-- Users More Info Section Start -->
-    <section class = "users-more-info flex column">
-      <div class="user-more flex column">
-        <div class="user-profile">
-          <img src="assets/images.jpeg" alt="" width="100%" height="100%">
-        </div>
-        <div class="user-info flex column">
-          <div class="info flex">
-            <div class="">Name:</div>
-            <div class="data">Jane Doe</div>
-          </div>
-          <div class="info flex">
-            <div class="">Age:</div>
-            <div class="data">25</div>
-          </div>
-          <div class="info flex">
-            <div class="">Location:</div>
-            <div class="data">Beirut</div>
-          </div>
-          <div class="info flex">
-            <div class="">Bio:</div>
-            <div class="data">Jane Doe sdhjdjshdsjdhsjdhsjdhjshd</div>
-          </div>
-          <div class="info flex">
-            <div class="">Interest:</div>
-            <div class="data">Females</div>
-          </div>
-        </div>
-        <div class="block-user flex">
-          <button type="button" name="button" class="btn btn-block">Block</button>
-        </div>
-      </div>
+    <section class = "users-more-info flex column hidden">
     </section>
 <!-- Users More Info Section End -->
 
+<!-- favorites section start -->
+    <section class = "favorites-section flex column hidden">
+      <h1 class = "home-title">Favorites</h1>
+      <div class="users-cards flex" id = "favorites-cards">
+      </div>
+    </section>
+<!-- favorites section end -->
 
   </body>
 </html>
