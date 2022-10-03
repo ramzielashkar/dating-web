@@ -6,7 +6,7 @@
     <title>Love Finder</title>
     <link rel="stylesheet" href="styles/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
+    <script type="text/javascript" src="scripts/register.js" defer></script>
   </head>
   <body>
     <!-- Navbar Section Start -->
@@ -23,33 +23,33 @@
     <!-- hero section start -->
     <section class = "hero flex column">
       <!-- login form start -->
-      <form class="signup-in-form flex column hidden" action="">
+      <form class="signup-in-form flex column hidden" id= "login-form" action="">
           <div class="form-title">Find Your Love !</div>
           <div class="line"></div>
           <label class ="label" for="login-email">Email</label>
-          <input type="email" name="login-email" id="email" class="form-input" placeholder="example@gmail.com">
+          <input type="email" name="email" id="login-email" class="form-input" placeholder="example@gmail.com">
 
           <label class ="label" for="login-password">Password</label>
-          <input type="password" name="login-password" id="password" class="form-input" placeholder="">
+          <input type="password" name="password" id="login-password" class="form-input" placeholder="">
 
           <button type="button" name="login" id = "login" class="btn btn-signup">Login</button>
-          <p class="error hidden"></p>
+          <div class="error hidden flex column" id ="login-error"></div>
       </form>
       <!-- login form end -->
 
       <!-- signup form start -->
-      <form class="signup-in-form flex column" action="">
+      <form class="signup-in-form flex column" id = "signup-form" action="">
           <div class="form-title">Find Your Love !</div>
           <div class="line"></div>
           <label class ="label" for="">I'm a</label>
           <div class="form-gender flex">
-            <select class="select" name="">
+            <select class="select" id = "select-gender" name="">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Both">Both</option>
             </select>
             <p class="interest">Seeking</p>
-            <select class="select" name="">
+            <select class="select" id = "select-interest" name="">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Both">Both</option>
@@ -69,8 +69,8 @@
 
           <button type="button" name="signup" id = "signup" class="btn btn-signup">Sign Up</button>
 
-          <a class="already-user" href="">Already have an account?</a>
-          <p class="error hidden"></p>
+          <a class="already-user">Already have an account?</a>
+          <div class="error hidden flex column" id ="signup-error"></div>
       </form>
       <!-- signup form end -->
 
