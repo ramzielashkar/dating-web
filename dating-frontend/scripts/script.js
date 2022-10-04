@@ -136,6 +136,20 @@ const response = postAPI(getUsersUrl, formData, token).then((result) => {
       favUser(favorite_id);
     });
   });
+
+  const chatBtn = document.querySelectorAll('.chat-icon');
+  chatBtn.forEach((item, i) => {
+    item.addEventListener("click", () => {
+      let id = item.parentElement.parentElement.querySelector('.user_id').defaultValue;
+      getSender(id);
+      getChat(id);
+      homeSection.classList.add("hidden");
+      chatPage.classList.remove('hidden');
+      homeTab.classList.remove('active');
+      chatTab.classList.add('active');
+    });
+  });
+
   });
 
 });
