@@ -3,31 +3,31 @@ const profilePage = document.querySelector('.profile-page');
 const editProfileSection = document.querySelector('.edit-profile-sec');
 const editProfileContainer = document.querySelector('.edit-profile-container');
 
-const getProfile = () => {
-const profile =`<input type="hidden" class = "user_id" value="ramzi">
+const displayProfile = (data) => {
+const profile =`<input type="hidden" class = "user_id" value="${data.user_id}">
 <div class="profile-pic">
-<img src="assets/images.jpeg" alt="" width="100%" height="100%">
+<img src="../dating-server/storage/${data.profile_picture}" alt="" width="100%" height="100%">
 </div>
 <div class="user-info flex column">
 <div class="info flex">
   <div class="">Name:</div>
-  <div class="data">Jane Doe</div>
+  <div class="data">${data.name}</div>
 </div>
 <div class="info flex">
   <div class="">Age:</div>
-  <div class="data">25</div>
+  <div class="data">${data.age}</div>
 </div>
 <div class="info flex">
   <div class="">Location:</div>
-  <div class="data">Beirut</div>
+  <div class="data">${data.location}</div>
 </div>
 <div class="info flex">
   <div class="">Interest:</div>
-  <div class="data">Females</div>
+  <div class="data">${data.interest_id}</div>
 </div>
 <div class="info flex">
   <div class="">Bio:</div>
-  <div class="data blur">Jane Doe sdhjdjshdsjdhsjdhsjdhjshd</div>
+  <div class="data blur">${data.bio}</div>
 </div>
 </div>
 
@@ -39,7 +39,7 @@ const profile =`<input type="hidden" class = "user_id" value="ramzi">
 profilePage.innerHTML = profile;
 };
 
-const editProfilePopup = () => {
+const editProfilePopup = (data) => {
 
   const editProfile = `<div class="profile-image">
     <i class="fa fa-times close-edit" aria-hidden="true"></i>
@@ -49,27 +49,11 @@ const editProfilePopup = () => {
       </label>
       <input type="file" name="image" accept="image/*" capture="environment" id="change-pp" multiple hidden>
     </div>
-    <img src="assets/images.jpeg" id ="changed-profile-picture" alt="" width="100%" height="100%">
+    <img src="../dating-server/storage/${data.profile_picture}" id ="changed-profile-picture" alt="" width="100%" height="100%">
   </div>
   <div class="changed-inputs flex column">
-  <label class ="label" for="changed-location">Location</label>
-  <input type="text" name="Location" id="changed-location" class="form-input" placeholder="Beirut">
-
-  <label class ="label" for="changed-name">Name</label>
-  <input type="text" name="name" id="changed-name" class="form-input" placeholder="Name...">
-
-  <label class ="label" for="changed-email">Email</label>
-  <input type="email" name="email" id="changed-email" class="form-input" placeholder="example@gmail.com">
-
-  <label class ="label" for="changed-password">Password</label>
-  <input type="password" name="password" id="changed-password" class="form-input" placeholder="">
-
-  <label class ="label" for="changed-interest">Interest</label>
-  <select class="select" id = "changed-interest" name="">
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-    <option value="Both">Both</option>
-  </select>
+  <label class ="label" for="changed-bio">Bio</label>
+  <textarea id = "changed-bio" name="bio" class="form-input" rows="8" cols="80" placeholder="What about you..."></textarea>
 
   <div class="button flex">
     <button type="button" name="button" class="btn btn-save" id="save-edit">Save</button>
@@ -80,18 +64,71 @@ editProfileContainer.innerHTML = editProfile;
 editProfileSection.classList.remove('hidden');
 };
 
-getProfile();
+
+
+// function to fetch get API
+const getAPIs = async (api_url, api_token = null,) => {
+    try{
+        return await axios(
+            api_url,
+            { headers:{
+                    'Authorization' : "Bearer" + api_token
+                }
+            }
+        );
+    }catch(error){
+      console.log(error);
+    }
+}
+// function to fetch Post API
+const postAPIs = async (api_url, api_data, api_token = null, ) => {
+    try{
+        return await axios.post(
+            api_url,
+            api_data,
+            { headers:{
+                    'Authorization' : "Bearer" + api_token
+                }
+            }
+        );
+    }catch(error){
+      console.log(error);
+    }
+}
+
+
+// function to get user profile
+const getProfile = async () => {
+const getProfileUrl = `${baseUrl}/getprofile/${user_id}`;
+const response = await getAPIs(getProfileUrl, token).then((result) => {
+displayProfile(result.data);
 const editProfileBtn = document.getElementById('edit-profile');
-
-
 editProfileBtn.addEventListener('click', () => {
-  editProfilePopup();
+displayPopup(result.data);
+});
+const logoutBtn = document.getElementById('logout');
+logoutBtn.addEventListener('click', () => {
+  localStorage.setItem('token', '');
+  location.replace('index.html');
+});
+
+});
+};
+
+const editProfile = async (data) => {
+const editProfileUrl = `${baseUrl}/profile`;
+data.append('user_id', user_id);
+const response = await postAPIs(editProfileUrl, data, token).then((result) => {
+  getProfile();
+
+});
+};
+
+
+const displayPopup = (data) => {
+  editProfilePopup(data);
   const changeProfilePic = document.getElementById('change-pp');
-  const changedNameInput = document.getElementById('changed-name');
-  const changedLocationInput = document.getElementById('changed-location');
-  const changedEmailInput = document.getElementById('changed-email');
-  const changedPassInput = document.getElementById('changed-password');
-  const changedInerestInput = document.getElementById('changed-interest');
+  const changedBioInput = document.getElementById('changed-bio');
   const changedProfilePic = document.getElementById('changed-profile-picture');
 
   changeProfilePic.addEventListener('change', () => {
@@ -104,22 +141,22 @@ editProfileBtn.addEventListener('click', () => {
 
   const saveEditedBtn = document.getElementById('save-edit');
   saveEditedBtn.addEventListener('click', () => {
-    const changedName = changedNameInput.value;
-    const changedEmail = changedEmailInput.value;
-    const changedInerest = changedInerestInput.options[changedInerestInput.selectedIndex].text;
-    const changedPassword = changedPassInput.value;
-    const changedLocation = changedLocationInput.value;
+    const changedBio = changedBioInput.value;
     if(changeProfilePic.files.length>0){
       let profilePic = changeProfilePic.files[0];
       let fileReader = new FileReader();
           // Convert to base64 after load
           fileReader.onload = function (fileLoadedEvent) {
               let fileInputBase64 = fileLoadedEvent.target.result;
-              console.log(fileInputBase64);
-          }
-          fileReader.readAsDataURL(profilePic);
+              let changedData = new FormData();
+              changedData.append("bio", changedBio);
+              changedData.append("profile_picture", fileInputBase64);
+              editProfile(changedData);
+            }
+          fileReader.readAsDataURL(profilePic, changedBio);
     }
     editProfileSection.classList.add('hidden');
 
   });
-});
+};
+getProfile();
