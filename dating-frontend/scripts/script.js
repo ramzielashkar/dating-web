@@ -110,40 +110,66 @@ const postAPI = async (api_url, api_data, api_token = null, ) => {
 
 // function to fetch getUsers API
 const getUsers = async(formData) => {
+  usersCards.innerHTML =""
   const getUsersUrl = `${baseUrl}/getusers`;
   console.log(token);
 const response = postAPI(getUsersUrl, formData, token).then((result) => {
 
   result.data.forEach((item, i) => {
-    console.log(item);
+    //console.log(item);
     displayUsers(item);
     const moreInfo = document.querySelectorAll('.more-info');
     moreInfo.forEach((items, i) => {
       items.addEventListener("click", () => {
         const id = items.parentElement.parentElement.parentElement.querySelector('.user_id').defaultValue;
         getMoreUserInfo(id);
-        //displayMoreInfo(item);
 
       });
     });
+  const favoriteBtn = document.querySelectorAll('.fav-icon');
+  favoriteBtn.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      const id = btn.parentElement.parentElement.parentElement.querySelector('.user_id').defaultValue;
+      favUser(id);
+    });
+  });
   });
 
 });
 }
 
+// function to get user more info
 const getMoreUserInfo = async (id)=>{
   const getUsersUrl = `${baseUrl}/getusers`;
-  let userFormData = new FormData();
-  userFormData.append('user_id', user_id);
-  userFormData.append('id', id);
-  const response = await postAPI(getUsersUrl, userFormData, token).then((result) => {
+  let usersFormData = new FormData();
+  usersFormData.append('user_id', user_id);
+  usersFormData.append('id', id);
+  const response = await postAPI(getUsersUrl, usersFormData, token).then((result) => {
+    console.log(result.data);
     displayMoreInfo(result.data);
     const close = moreInfoSection.querySelector('.close-moreinfo');
     close.addEventListener("click", () => {
       moreInfoSection.classList.add('hidden');
     });
+    const blockBtn = moreInfoSection.querySelector('.btn-block');
+    blockBtn.addEventListener("click", () => {
+      blockUser(id);
+      moreInfoSection.classList.add('hidden');
+
+    });
   });
 
+}
+
+// function to block users
+const blockUser = async (id) => {
+  const blockUsersUrl = `${baseUrl}/blockuser`;
+  let usersFormData = new FormData();
+  usersFormData.append('user_id', user_id);
+  usersFormData.append('blocked_id', id);
+  const response = await postAPI(blockUsersUrl,usersFormData, token).then((result) => {
+    getUsers(userFormData);
+});
 }
 
 let userFormData = new FormData();
@@ -151,8 +177,18 @@ userFormData.append('user_id', user_id);
 getUsers(userFormData);
 
 
+// function to favorite users
+const favUser = async (id) => {
+  const favUsersUrl = `${baseUrl}/favorite`;
+  let favFormData = new FormData();
+  favFormData.append('user_id', user_id);
+  favFormData.append('favorite_id', id);
+  const response = await postAPI(favUsersUrl, favFormData, token).then((result) => {
+    console.log(result);
+  });
+}
 
-
+// Event Listeners
 favoriteTab.addEventListener("click", () => {
   homeSection.classList.add("hidden");
   profileSection.classList.add("hidden");
