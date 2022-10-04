@@ -29,10 +29,9 @@ class UsersController extends Controller
                       $join->on('profiles.user_id', '=', 'users.id');
                     })
                          ->whereNotExists(function ($query) use($user_id){
-                  $query->select()
-                        ->from('blocks')
-                        ->where('blocks.blocked_id', '=', 'users.id')
-                        ->where('blocks.user_id', '=', $user_id);
+                  $query->from('blocks')
+                        ->where('blocks.blocked_id', 'users.id')
+                        ->where('blocks.user_id', $user_id);
                       })
                       ->where('users.id', '!=', $user_id)
                       ->get();
@@ -48,10 +47,9 @@ class UsersController extends Controller
                     $join->on('profiles.user_id', '=', 'users.id');
                   })
                        ->whereNotExists(function ($query) use($user_id){
-                $query->select()
-                      ->from('blocks')
-                      ->where('blocks.blocked_id', '=', 'users.id')
-                      ->where('blocks.user_id', '=', $user_id);
+                $query->from('blocks')
+                      ->where('blocks.blocked_id', 'users.id')
+                      ->where('blocks.user_id', $user_id);
                     })
                     ->where('users.id', '!=', $user_id)
                     ->where('users.gender', '=', $gender)
@@ -108,6 +106,9 @@ class UsersController extends Controller
                      ->where('favorites.follower_id', '=', $id)
                      ->where('favorites.active', '=', 0);
             })
+            ->Join('profiles', function ($join) use($id){
+                        $join->on('profiles.user_id', '=', 'users.id');
+                      })
             ->get();
   }
 
@@ -120,7 +121,7 @@ class UsersController extends Controller
     ->where('followed_id', $favorite_id)
     ->update(['active' => '1']);
   }
-  // function to add Profile
+  // function to add or update Profile
 
   function addProfile(Request $request){
     $profile = new Profile;
@@ -190,8 +191,11 @@ class UsersController extends Controller
       return Profile::all();
     }
     else{
-      return Profile::where('user_id', $id)
-                    ->get();
+      return User:: Join('profiles', function ($join) use($id){
+                  $join->on('profiles.user_id', '=', 'users.id');
+                })
+                ->where('users.id', "=", $id)
+                ->first();
 
     }
   }
