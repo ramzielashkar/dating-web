@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script type="text/javascript" src="scripts/register.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
   </head>
   <body>
     <!-- Navbar Section Start -->
@@ -40,7 +41,7 @@
       <!-- signup form start -->
       <form class="signup-in-form flex column" id = "signup-form" action="">
           <div class="form-title">Find Your Love !</div>
-          <div class="line"></div>
+          <!-- <div class="line"></div> -->
           <label class ="label" for="">I'm a</label>
           <div class="form-gender flex">
             <select class="select" id = "select-gender" name="">
@@ -60,7 +61,8 @@
 
           <label class ="label" for="name">Name</label>
           <input type="text" name="name" id="name" class="form-input" placeholder="Name...">
-
+          <label class ="label" for="age">Age</label>
+          <input type="number" name="name" id="age" class="form-input">
           <label class ="label" for="email">Email</label>
           <input type="email" name="email" id="email" class="form-input" placeholder="example@gmail.com">
 
