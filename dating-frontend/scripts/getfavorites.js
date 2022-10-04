@@ -31,7 +31,7 @@ const favoriteCard = `<div class="user-card flex column">
 favoritesCards.innerHTML+= favoriteCard;
 };
 
-// function to fetch Post API
+// function to fetch get API
 const getAPI = async (api_url, api_token = null,) => {
     try{
         return await axios(
@@ -45,6 +45,8 @@ const getAPI = async (api_url, api_token = null,) => {
       console.log(error);
     }
 }
+
+
 // function to get favorites
 const getFavorites = async () => {
   favoritesCards.innerHTML="";
