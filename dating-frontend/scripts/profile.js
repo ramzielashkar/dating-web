@@ -2,6 +2,7 @@ const profileSection = document.querySelector('.profile-section');
 const profilePage = document.querySelector('.profile-page');
 const editProfileSection = document.querySelector('.edit-profile-sec');
 const editProfileContainer = document.querySelector('.edit-profile-container');
+const navImg = document.getElementById('nav-img');
 
 const displayProfile = (data) => {
 const profile =`<input type="hidden" class = "user_id" value="${data.user_id}">
@@ -35,7 +36,7 @@ const profile =`<input type="hidden" class = "user_id" value="${data.user_id}">
 <button type="button" name="logout" id = "logout" class = "btn btn-profile">Logout</button>
 <button type="button" name="edit" id = "edit-profile" class = "btn btn-profile">Edit Profile</button>
 </div>`;
-
+navImg.src = `../dating-server/storage/${data.profile_picture}`;
 profilePage.innerHTML = profile;
 };
 
@@ -59,7 +60,6 @@ const editProfilePopup = (data) => {
     <button type="button" name="button" class="btn btn-save" id="save-edit">Save</button>
   </div>
 </div>`;
-
 editProfileContainer.innerHTML = editProfile;
 editProfileSection.classList.remove('hidden');
 };
