@@ -54,9 +54,11 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $user =  User:: where('email', request(['email']))->get();
         return response()->json([
             "status" => "Success",
-            "token"=>$token
+            "token"=>$token,
+            "user"=>$user
         ]);
     }
 
