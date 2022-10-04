@@ -17,8 +17,29 @@ class UsersController extends Controller
 
     $user_id = $request->user_id;
     $id = $request->id;
+    $interest = User::select('interest_id')->where('id', $user_id)->get();
+    $interest = (int) filter_var($interest, FILTER_SANITIZE_NUMBER_INT);
+    if($interest == 1){
+      $gender = "Male";
+    }else if($interest == 2){
+      $gender = "Female";
+    }else{
+      if(!$id){
+          return User:: Join('profiles', function ($join) {
+                      $join->on('profiles.user_id', '=', 'users.id');
+                    })
+                         ->whereNotExists(function ($query) use($user_id){
+                  $query->select()
+                        ->from('blocks')
+                        ->where('blocks.blocked_id', '=', 'users.id')
+                        ->where('blocks.user_id', '=', $user_id);
+                      })
+                      ->where('users.id', '!=', $user_id)
+                      ->get();
+        }
+        return User::find($id);
+    }
     if(!$id){
-
         return User:: Join('profiles', function ($join) {
                     $join->on('profiles.user_id', '=', 'users.id');
                   })
@@ -29,16 +50,8 @@ class UsersController extends Controller
                       ->where('blocks.user_id', '=', $user_id);
                     })
                     ->where('users.id', '!=', $user_id)
+                    ->where('users.gender', '=', $gender)
                     ->get();
-
-        //   return User::
-        //   leftJoin('blocks', function ($join) {
-        //     $join->on('users.id', '=', 'blocks.id')
-        //          ->where('blocked_id', '!=', 'users.id');
-        // })
-        //   ->where('users.id', '!=', $user_id)
-        //   ->get();
-
       }
       return User::find($id);
   }
