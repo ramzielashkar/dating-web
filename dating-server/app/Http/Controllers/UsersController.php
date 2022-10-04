@@ -37,8 +37,12 @@ class UsersController extends Controller
                       ->where('users.id', '!=', $user_id)
                       ->get();
         }
-        return User::find($id);
-    }
+        return User:: Join('profiles', function ($join) use($id){
+                    $join->on('profiles.user_id', '=', 'users.id');
+                  })
+                  ->where('users.id', "=", $id)
+                  ->first();
+                    }
     if(!$id){
         return User:: Join('profiles', function ($join) {
                     $join->on('profiles.user_id', '=', 'users.id');
@@ -53,7 +57,11 @@ class UsersController extends Controller
                     ->where('users.gender', '=', $gender)
                     ->get();
       }
-      return User::find($id);
+      return User:: Join('profiles', function ($join) use($id){
+                  $join->on('profiles.user_id', '=', 'users.id');
+                })
+                ->where('users.id', "=", $id)
+                ->first();
   }
 
   // function to block users
