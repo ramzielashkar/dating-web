@@ -122,6 +122,7 @@ const response = postAPI(getUsersUrl, formData, token).then((result) => {
     moreInfo.forEach((items, i) => {
       items.addEventListener("click", () => {
         const id = items.parentElement.parentElement.parentElement.querySelector('.user_id').defaultValue;
+        //console.log(id);
         getMoreUserInfo(id);
 
       });
@@ -129,8 +130,10 @@ const response = postAPI(getUsersUrl, formData, token).then((result) => {
   const favoriteBtn = document.querySelectorAll('.fav-icon');
   favoriteBtn.forEach((btn, i) => {
     btn.addEventListener("click", () => {
-      const id = btn.parentElement.parentElement.parentElement.querySelector('.user_id').defaultValue;
-      favUser(id);
+      //console.log(btn);
+      let favorite_id = btn.parentElement.parentElement.querySelector('.user_id').defaultValue;
+      console.log(favorite_id);
+      favUser(favorite_id);
     });
   });
   });
@@ -185,6 +188,7 @@ const favUser = async (id) => {
   favFormData.append('favorite_id', id);
   const response = await postAPI(favUsersUrl, favFormData, token).then((result) => {
     console.log(result);
+    getFavorites();
   });
 }
 
