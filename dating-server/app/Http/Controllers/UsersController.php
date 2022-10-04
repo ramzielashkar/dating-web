@@ -19,7 +19,7 @@ class UsersController extends Controller
     $id = $request->id;
     if(!$id){
 
-        return User:: leftJoin('profiles', function ($join) {
+        return User:: Join('profiles', function ($join) {
                     $join->on('profiles.user_id', '=', 'users.id');
                   })
                        ->whereNotExists(function ($query) use($user_id){
@@ -29,7 +29,6 @@ class UsersController extends Controller
                       ->where('blocks.user_id', '=', $user_id);
                     })
                     ->where('users.id', '!=', $user_id)
-                    ->orderby('users.id')
                     ->get();
 
         //   return User::
