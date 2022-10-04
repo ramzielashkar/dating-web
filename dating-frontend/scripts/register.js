@@ -54,8 +54,10 @@ const addUser = async (formData) => {
 const validateLogin = async (formData) => {
   const loginUrl = `${baseUrl}/login`;
   const response = await postAPI(loginUrl, formData, loginError).then((result) => {
+    console.log(result);
     localStorage.setItem('token', result.data.token);
     localStorage.setItem('user_id', result.data.user[0].id);
+    location.replace("home.html");
   });
 };
 
