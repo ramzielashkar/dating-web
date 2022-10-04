@@ -17,6 +17,20 @@ const loginError = document.getElementById('login-error');
 const baseUrl = "http://127.0.0.1:8000/api";
 
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+
+  } else {
+    console.log('error');
+  }
+}
+
+function showPosition(position) {
+  console.log("latitude ",position.coords.latitude);
+  console.log("Longitude ",position.coords.longitude);
+}
+getLocation();
 // function to post to an API
 const postAPI = async (api_url, api_data, errorfield, api_token = null, ) => {
     try{
