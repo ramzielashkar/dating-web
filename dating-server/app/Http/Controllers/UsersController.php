@@ -228,13 +228,16 @@ class UsersController extends Controller
     $receiver_id = $request->receiver_id;
     $profile = new Profile;
     if(!$receiver_id){
-      return Chat:: leftJoin('profiles', function ($join) {
+      return Chat::Join('profiles', function ($join) use($user_id) {
                   $join->on('profiles.user_id', '=', 'chats.receiver_id');
                 })
                 ->Join('users', function ($join) {
                             $join->on('users.id', '=', 'chats.receiver_id');
+                            // $join->on('users.id', '=', 'chats.sender_id');
                           })
                           ->where('chats.sender_id', '=', $user_id)
+                          ->orWhere('chats.receiver_id', '=', $user_id)
+                          //->where('profiles.user_id' '!=', $user_id);
                           ->get();
     }else{
       return Chat:: leftJoin('profiles', function ($join) use($receiver_id){
@@ -245,6 +248,8 @@ class UsersController extends Controller
                           })
                           ->where('chats.sender_id', '=', $user_id)
                           ->where('chats.receiver_id', '=', $receiver_id)
+                          ->orWhere('chats.sender_id', '=', $receiver_id)
+                          ->where('chats.receiver_id', '=', $user_id)
                           ->get();
     }
   }
