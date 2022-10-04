@@ -314,18 +314,19 @@ justify-content: space-evenly;
 
 /* Chat Section Styling Start */
 .chat-section{
-  padding: 2rem 5rem;
+  padding: 2rem 1rem;
 }
 
 .chats-container{
-  width: 70%;
   align-self: center;
+  width: 70%;
   justify-content: space-between;
 }
 
 .all-chats{
 background-color: #F5EDDC;
 padding: 2rem;
+margin-bottom: 2rem;
 }
 
 .one-chat{
@@ -432,7 +433,11 @@ padding: 2rem;
 }
 
 @media only screen and (max-width:1000px){
-
+  .chats-container{
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-between;
+  }
 .nav-items{
   flex-basis: 50%;
   justify-content: space-between;
