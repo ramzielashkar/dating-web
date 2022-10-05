@@ -25,16 +25,19 @@ class UsersController extends Controller
       $gender = "Female";
     }else{
       if(!$id){
-          return User:: Join('profiles', function ($join) {
-                      $join->on('profiles.user_id', '=', 'users.id');
-                    })
-                         ->whereNotExists(function ($query) use($user_id){
-                  $query->from('blocks')
-                        ->where('blocks.blocked_id', 'users.id')
-                        ->where('blocks.user_id', $user_id);
+          return User::whereNotExists(function ($query) use($user_id){
+                      $query
+                        ->from('blocks')
+                        ->whereColumn('blocks.blocked_id', 'users.id')
+                        ->where('blocks.user_id', '=', $user_id);
                       })
+                      ->Join('profiles', function ($join) {
+                                  $join->on('profiles.user_id', '=', 'users.id');
+                                })
                       ->where('users.id', '!=', $user_id)
+                      ->where('users.gender', '=', $gender)
                       ->get();
+
         }
         return User:: Join('profiles', function ($join) use($id){
                     $join->on('profiles.user_id', '=', 'users.id');
@@ -43,17 +46,20 @@ class UsersController extends Controller
                   ->first();
                     }
     if(!$id){
-        return User:: Join('profiles', function ($join) {
-                    $join->on('profiles.user_id', '=', 'users.id');
-                  })
-                       ->whereNotExists(function ($query) use($user_id){
-                $query->from('blocks')
-                      ->where('blocks.blocked_id', 'users.id')
-                      ->where('blocks.user_id', $user_id);
+        return User::whereNotExists(function ($query) use($user_id){
+                    $query
+                      ->from('blocks')
+                      ->whereColumn('blocks.blocked_id', 'users.id')
+                      ->where('blocks.user_id', '=', $user_id);
                     })
+                    ->Join('profiles', function ($join) {
+                                $join->on('profiles.user_id', '=', 'users.id');
+                              })
                     ->where('users.id', '!=', $user_id)
                     ->where('users.gender', '=', $gender)
                     ->get();
+
+
       }
       return User:: Join('profiles', function ($join) use($id){
                   $join->on('profiles.user_id', '=', 'users.id');
