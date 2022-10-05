@@ -60,6 +60,9 @@ body{
   flex-basis: 35%;
   justify-content: space-between;
 }
+.nav{
+
+}
 .nav-item{
   align-self: center;
   font-size: 20px;
@@ -202,7 +205,6 @@ justify-content: space-evenly;
 
 .profile-pic{
   height: 400px;
-  position: relative;
 }
 
 .blur{
@@ -474,12 +476,16 @@ margin-bottom: 2rem;
     width:70%;
   }
 .nav-items{
-  flex-basis: 50%;
-  justify-content: space-between;
+display: none;
+
 }
 
 .profile-section{
   padding: 0 7rem!important;
+}
+
+.burger-menu{
+  display: flex;
 }
 
 }
