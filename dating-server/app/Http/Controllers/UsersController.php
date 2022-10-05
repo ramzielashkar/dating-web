@@ -134,6 +134,10 @@ class UsersController extends Controller
     $user_id = $request->user_id;
     $profile_picture = $request->profile_picture;
     $bio = $request->bio;
+
+    if(!$bio){
+      $bio = "";
+    }
      $folderPath = "Controllers";
     $exists = Profile::where('user_id', $user_id)->count() > 0;
     if(!$exists){
@@ -234,19 +238,19 @@ class UsersController extends Controller
     $receiver_id = $request->receiver_id;
     $profile = new Profile;
     if(!$receiver_id){
-      return Chat::Join('profiles', function ($join) use($user_id) {
+      return Chat::
+                  Join('profiles', function ($join) use($user_id) {
                   $join->on('profiles.user_id', '=', 'chats.receiver_id');
                 })
                 ->Join('users', function ($join) {
                             $join->on('users.id', '=', 'chats.receiver_id');
-                            // $join->on('users.id', '=', 'chats.sender_id');
                           })
                           ->where('chats.sender_id', '=', $user_id)
                           ->orWhere('chats.receiver_id', '=', $user_id)
-                          //->where('profiles.user_id' '!=', $user_id);
                           ->get();
     }else{
-      return Chat:: leftJoin('profiles', function ($join) use($receiver_id){
+      return Chat::
+                  leftJoin('profiles', function ($join) use($receiver_id){
                   $join->on('profiles.user_id', '=', 'chats.receiver_id');
                 })
                 ->leftJoin('users', function ($join) use($receiver_id) {
