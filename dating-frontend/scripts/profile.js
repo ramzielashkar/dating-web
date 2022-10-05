@@ -5,6 +5,14 @@ const editProfileContainer = document.querySelector('.edit-profile-container');
 const navImg = document.getElementById('nav-img');
 
 const displayProfile = (data) => {
+  let interest = "";
+if(data.interest_id == 1){
+  interest="Male";
+}else if(data.interest_id == 2){
+  interest ="Female";
+}else{
+  interest = "Both";
+}
 const profile =`<input type="hidden" class = "user_id" value="${data.user_id}">
 <div class="profile-pic">
 <img src="../dating-server/storage/${data.profile_picture}" alt="" width="100%" height="100%">
@@ -24,7 +32,7 @@ const profile =`<input type="hidden" class = "user_id" value="${data.user_id}">
 </div>
 <div class="info flex">
   <div class="">Interest:</div>
-  <div class="data">${data.interest_id}</div>
+  <div class="data">${interest}</div>
 </div>
 <div class="info flex">
   <div class="">Bio:</div>
