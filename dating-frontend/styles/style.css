@@ -414,6 +414,9 @@ margin-bottom: 2rem;
   font-size: 13px;
   font-weight: bold;
 }
+.sendmsg{
+  cursor: pointer;
+}
 /* Chat Section Styling End */
 
 /* media queries */
