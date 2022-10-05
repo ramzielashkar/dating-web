@@ -195,7 +195,7 @@ justify-content: space-evenly;
 
 /* Profile Section Styling Start */
 .profile-section{
-  padding: 0 20rem;
+  padding: 0 20rem!important;
 }
 
 .profile-pic{
@@ -319,18 +319,18 @@ justify-content: space-evenly;
 
 .chats-container{
   align-self: center;
-  width: 70%;
-  justify-content: space-between;
+  width: 90%;
+  justify-content: space-around;
 }
 
 .all-chats{
+width:40%;
 background-color: #F5EDDC;
 padding: 2rem;
 margin-bottom: 2rem;
 }
 
 .one-chat{
-  width: 400px;
   background-color: white;
   border-bottom: 2px solid rgb(99, 0, 0, 1);
   align-items: center;
@@ -355,6 +355,7 @@ margin-bottom: 2rem;
 }
 
 .specific-chat{
+  width:40%;
   background-color: #F5EDDC;
   padding: 1rem 2rem;
   height: 50%;
@@ -364,7 +365,6 @@ margin-bottom: 2rem;
   border-bottom: 2px solid rgb(99, 0, 0, 1);
   align-items: center;
   padding: 1rem;
-  width: 400px;
 }
 
 .sender-msg{
@@ -373,13 +373,13 @@ margin-bottom: 2rem;
   border-radius: 30px;
   background-color: white;
   padding: 0.5rem 1rem;
-  min-width: 300px;
+  min-width: 60%;
 }
 .my-msg{
   border-radius: 30px;
   background-color: white;
   padding: 0.5rem 1rem;
-  min-width: 300px;
+  min-width: 60%;
   align-self: flex-end;
   margin-top: 1rem;
 }
@@ -433,18 +433,36 @@ margin-bottom: 2rem;
     flex-basis: 60%;
     justify-content: space-between;
   }
+  .profile-section{
+    padding: 0!important;
+  }
 
 }
 
-@media only screen and (max-width:1000px){
+@media only screen and (max-width:1000px) and (min-width:700px){
   .chats-container{
     flex-direction: column;
-    width: 50%;
     justify-content: space-between;
+    align-items: center;
+  }
+  .all-chats{
+    width:70%;
+  }
+
+  .specific-chat{
+    width:70%;
   }
 .nav-items{
   flex-basis: 50%;
   justify-content: space-between;
 }
+
+.profile-section{
+  padding: 0 7rem!important;
+}
+
+}
+
+@media only screen and (max-width:1200px){
 
 }
