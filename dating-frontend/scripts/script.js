@@ -5,10 +5,15 @@ const favoriteTab = document.getElementById('favorites');
 const homeTab = document.getElementById('home');
 const chatTab = document.getElementById('chats');
 const profileTab = document.querySelector('.profile');
+const burgerMenu = document.querySelector('.burger-menu');
+const mobileNavBar = document.querySelector('.mobile-nav');
 const user_id = localStorage.getItem('user_id');
 const token = localStorage.getItem('token');
 const baseUrl = "http://127.0.0.1:8000/api";
-
+const mobileHome = document.getElementById('mobile-home');
+const mobileFavorites = document.getElementById('mobile-favorites');
+const mobileChats = document.getElementById('mobile-chats');
+const mobileProfile = document.getElementById('mobile-profile');
 
 
 // functions
@@ -247,4 +252,41 @@ chatTab.addEventListener("click", () => {
   favoriteTab.classList.remove('active');
   homeTab.classList.remove('active');
   chatTab.classList.add('active');
+});
+
+burgerMenu.addEventListener('click', () => {
+  mobileNavBar.classList.remove('hidden');
+});
+
+mobileHome.addEventListener('click', () => {
+  favoritesSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
+  chatPage.classList.add('hidden');
+  homeSection.classList.remove("hidden");
+  mobileNavBar.classList.add('hidden');
+});
+
+mobileChats.addEventListener('click', () => {
+  favoritesSection.classList.add("hidden");
+  homeSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
+  chatPage.classList.remove('hidden');
+  mobileNavBar.classList.add('hidden');
+
+});
+
+mobileFavorites.addEventListener('click', () => {
+  homeSection.classList.add("hidden");
+  profileSection.classList.add("hidden");
+  favoritesSection.classList.remove("hidden");
+  chatPage.classList.add('hidden');
+  mobileNavBar.classList.add('hidden');
+});
+
+mobileProfile.addEventListener('click', () => {
+  favoritesSection.classList.add("hidden");
+  homeSection.classList.add("hidden");
+  profileSection.classList.remove("hidden");
+  chatPage.classList.add('hidden');
+  mobileNavBar.classList.add('hidden');
 });
