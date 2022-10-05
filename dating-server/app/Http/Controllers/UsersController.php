@@ -127,6 +127,7 @@ class UsersController extends Controller
     ->where('followed_id', $favorite_id)
     ->update(['active' => '1']);
   }
+
   // function to add or update Profile
 
   function addProfile(Request $request){
@@ -240,7 +241,8 @@ class UsersController extends Controller
     if(!$receiver_id){
       return Chat::
                   Join('profiles', function ($join) use($user_id) {
-                  $join->on('profiles.user_id', '=', 'chats.receiver_id');
+                  $join->on('profiles.user_id', '=', 'chats.receiver_id')
+                  ->where('profiles.user_id', '!=', $user_id);
                 })
                 ->Join('users', function ($join) {
                             $join->on('users.id', '=', 'chats.receiver_id');
@@ -260,6 +262,7 @@ class UsersController extends Controller
                           ->where('chats.receiver_id', '=', $receiver_id)
                           ->orWhere('chats.sender_id', '=', $receiver_id)
                           ->where('chats.receiver_id', '=', $user_id)
+                          ->orderBy("chats.id")
                           ->get();
     }
   }
