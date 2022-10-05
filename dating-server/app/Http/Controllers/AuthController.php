@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
+use App\Models\Profile;
 
 class AuthController extends Controller
 {
@@ -35,13 +36,20 @@ class AuthController extends Controller
 
 
           if($user->save()){
+              $profile = new Profile;
+              $profile->user_id = $user->id;
+              $profile->profile_picture = "default.png";
+              $profile->bio = "";
+              if($profile->save()){
                 return response()->json([
                     "status" => "Success",
                     "data" => $user,
-                    "token"=>$token
+                    "token"=>$token,
+                    "profile"=>$profile
                 ]);
-            }
+              }
 
+            }
     }
 
 
