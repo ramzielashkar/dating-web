@@ -8,23 +8,26 @@ const specificChats = document.querySelector('.specific-chat');
 const messagesContainer = document.querySelector('.messages');
 const messageInput= document.getElementById('message-to-send');
 const sendBtn = document.querySelector('.sendmsg');
+let receiver = [];
 
 const displayAllChats = (data) => {
-const chat = `<div class="one-chat flex">
-  <input type="hidden" name="" value="${data.receiver_id}" class="sender-id">
-  <div class="sender-img">
-    <img src="../dating-server/storage/${data.profile_picture}" alt="" width="100%" height="100%">
-  </div>
-  <div class="sender-name">${data.name}</div>
-</div>`;
-allChatContainer.innerHTML+=chat;
-
+  if(!receiver.includes(data.receiver_id)){
+    receiver.push(data.receiver_id);
+    let chat = `<div class="one-chat flex">
+      <input type="hidden" name="" value="${data.receiver_id}" class="sender-id">
+      <div class="sender-img">
+        <img src="../dating-server/storage/${data.profile_picture}" alt="" width="100%" height="100%">
+      </div>
+      <div class="sender-name">${data.name}</div>
+    </div>`;
+    allChatContainer.innerHTML+=chat;
+  }else{
+  }
 };
 
 const displaySpecificChat = (data) => {
   let chat = "";
   if(data.sender_id == user_id){
-    console.log('true');
     chat = `<div class="my-msg">
           <p class = "message">${data.content}</p>
         </div>`;
@@ -104,18 +107,17 @@ const getSender = async (id) => {
   const getChatsUrl = `${baseUrl}/getprofile/${id}`;
   const response = await getApi(getChatsUrl, token).then((result) => {
     displaySender(result.data);
-    messagesContainer.innerHTML = "";
   });
 };
 // function to get chats related to a user
 const getChat = async (id) => {
+  messagesContainer.innerHTML = "";
   const data = new FormData;
   data.append("user_id", user_id);
   data.append("receiver_id", id);
   const getChatsUrl = `${baseUrl}/getchat`;
   const response = await postApi(getChatsUrl, data, token).then((result) => {
     result.data.forEach((item, i) => {
-      console.log(item);
       displaySpecificChat(item);
     });
 
