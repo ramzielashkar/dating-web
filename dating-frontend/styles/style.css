@@ -452,12 +452,17 @@ margin-bottom: 2rem;
     width:100%;
     height: 200px;
   }
+
   .nav-items{
-    flex-basis: 60%;
-    justify-content: space-between;
+  display: none;
+
   }
   .profile-section{
     padding: 0!important;
+  }
+
+  .burger-menu{
+    display: flex;
   }
 
 }
@@ -475,21 +480,15 @@ margin-bottom: 2rem;
   .specific-chat{
     width:70%;
   }
-.nav-items{
-display: none;
 
-}
 
 .profile-section{
   padding: 0 7rem!important;
 }
-
-.burger-menu{
-  display: flex;
+.nav-items{
+  flex-basis: 60%;
+  justify-content: space-between;
 }
 
-}
-
-@media only screen and (max-width:1200px){
 
 }
